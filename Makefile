@@ -45,7 +45,7 @@ endif
 
 
 
-deploy:
+deploy: 
 	@forge script script/DeployBasicNFT.s.sol:DeployBasicNft $(NETWORK_ARGS)
 
 mint:
@@ -56,6 +56,13 @@ deployMood:
 
 mintMoodNft:
 	@forge script script/Interactions.s.sol:MintMoodNft $(NETWORK_ARGS)
+
+mintMoodWithCast:
+	cast send 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "mintNft()" --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KEY) 
+ 
+flipMoodNftWithCast:
+	cast send 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 "flipMood(uint256)" 0 --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KEY) 
+
 
 flipMoodNft:
 	@forge script script/Interactions.s.sol:FlipMoodNft $(NETWORK_ARGS)
